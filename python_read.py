@@ -10,8 +10,9 @@ print(df_dict)
 f = open("/Users/wenbo/Desktop/output.json", "w")
 
 for key in df_dict:
-	json_str = df_dict[key].to_json(orient='records', force_ascii=False) #force_ascii 解决中文乱码问题
-	print (json_str)
-	f.write(json.dumps(json.loads(json_str), indent=4, ensure_ascii=False)) #loads之后再dumps可以美化json
+	json_obj = df_dict[key].to_json(orient='records', force_ascii=False) #force_ascii 解决中文乱码问题
+	print (json_obj)
+	feed_to_es(json_obj)
+	f.write(json.dumps(json.loads(json_obj), indent=4, ensure_ascii=False)) #loads之后再dumps可以美化json
 	
 f.close()
