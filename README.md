@@ -23,5 +23,6 @@
 # steps to set up
 1. install elasticsearch
 2. start elasticsearch with default settting, it will serve @ localhost:9200
-3. change py_es.py specifying data location
-4. run py_es.py with command: python3 py_es.py
+3. install elasticsearch lib using "pip3 install elasticsearch && pip3 install numpy && pip3 install pandas"
+4. change py_es.py specifying data location
+5. run py_es.py with command: python3 py_es.py
