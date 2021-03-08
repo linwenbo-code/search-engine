@@ -1,4 +1,6 @@
+
 # search-engine
+
 
 人生中第一个搜索引擎
 简易，却不简单
@@ -10,6 +12,7 @@
 感谢python，es的作者。
 
 感谢卡拉先生的搜索引擎启蒙，虽然我们并未谋面
+
 
 # tech stacks
 1. python for 
