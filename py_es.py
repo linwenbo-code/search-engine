@@ -6,7 +6,7 @@ import json
 
 # when sheet_name=None, return a dict of dataframe
 # read and parse excel
-df_dict = pd.read_excel('/Users/wenbolin/Desktop/test_data.xlsx', header=[0], sheet_name=None)
+df_dict = pd.read_excel('/Users/wenbolin/Desktop/test_data.xlsx', header=[0, 1, 2], sheet_name=['区直部门', '南宁市', '柳州市'])
 
 # print out result to debug
 print(type(df_dict))
@@ -14,16 +14,23 @@ print(df_dict)
 
 id = 0
 
+# for test: reset index in every run, ignore status code 400 (index already exists)
+es.indices.delete(index="_all") # delete all indices
+es.indices.create(index="test-data", ignore=400)
+
 # feed data to elastic search at default setting localhost:9200
 for key in df_dict:
+	print('key is ' + key)
 	json_objs = df_dict[key].to_json(orient='records', force_ascii=False) #force_ascii 解决中文乱码问题
-	print (json_objs)
+	# json_objs from str to json objects
 	json_objs = json.loads(json_objs)
+	print ('excel 记录条数：' + str(len(json_objs)))
 	for json_obj in json_objs:
 		print(json_obj)
+		print('id is ' + str(id))
 		res = es.index(index="test-data", id=id, body=json_obj)
 		id += 1
-		print(res['result'])
+		# print(res['result'])
 
 es.indices.refresh(index="test-data")
 

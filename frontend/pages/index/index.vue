@@ -20,6 +20,7 @@
 		
 		<ol>
 			<li v-for="(item, index) in resultList">
+				<u-divider color="#fa3534">共搜索到 {{ resultList.length }} 条记录</u-divider>
 				<u-divider color="#fa3534">第 {{ index+1 }} 条记录</u-divider>
 				{{ JSON.stringify(item) }}
 			</li>
