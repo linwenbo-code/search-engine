@@ -23,6 +23,13 @@
 2.1 receive user input
 2.2 display query results
 
+# prerequisite
+1. excel需要全部清除下拉列表
+2. wps -> 全选 -> 数据 -> 插入列表 -> 全部清除
+
+# 经验
+1. es会模糊搜索，比如搜索“澳门”，只有一个“门”字匹配的项也会显示
+
 # steps to set up
 1. install elasticsearch
 2. start elasticsearch with default settting, it will serve @ localhost:9200

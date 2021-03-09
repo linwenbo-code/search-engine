@@ -6,7 +6,7 @@ import json
 
 # when sheet_name=None, return a dict of dataframe
 # read and parse excel
-df_dict = pd.read_excel('/Users/wenbolin/Desktop/test_data.xlsx', header=[0, 1, 2], sheet_name=['区直部门', '南宁市', '柳州市'])
+df_dict = pd.read_excel('/Users/wenbolin/Desktop/test_data.xlsx', header=[0, 1, 2], sheet_name=None)
 
 # print out result to debug
 print(type(df_dict))
@@ -20,7 +20,7 @@ es.indices.create(index="test-data", ignore=400)
 
 # feed data to elastic search at default setting localhost:9200
 for key in df_dict:
-	print('key is ' + key)
+	print('key is ' + str(key))
 	json_objs = df_dict[key].to_json(orient='records', force_ascii=False) #force_ascii 解决中文乱码问题
 	# json_objs from str to json objects
 	json_objs = json.loads(json_objs)
@@ -35,10 +35,10 @@ for key in df_dict:
 es.indices.refresh(index="test-data")
 
 # try a search query
-res = es.search(index="test-data", body={"query": {"query_string": {"query" : "澳门特别行政区"}}})
-print("Got %d Hits:" % res['hits']['total']['value'])
-for hit in res['hits']['hits']:
-	print(hit)
+# res = es.search(index="test-data", body={"query": {"query_string": {"query" : "澳门特别行政区"}}})
+# print("Got %d Hits:" % res['hits']['total']['value'])
+# for hit in res['hits']['hits']:
+#	print(hit)
 	
 #########################################	
 #http server to receive user query
