@@ -29,6 +29,7 @@
 
 # 经验
 1. es会模糊搜索，比如搜索“澳门”，只有一个“门”字匹配的项也会显示
+2. excel里面可能有隐藏的表格，也要处理
 
 # steps to set up
 1. install elasticsearch
